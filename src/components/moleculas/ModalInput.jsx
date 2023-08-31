@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import Botonbl from '../atomos/Botonbl'
-import { FaRegMessage, FaXmark, FaFile, FaHouseCrack, FaCity } from "react-icons/fa6"
+import { FaRegMessage, FaXmark, FaFile, FaHouseCrack, FaCity, FaPhone } from "react-icons/fa6"
 import FormSelectInput from '../atomos/formInputs/formSelectInput'
 import FormTextInput from '../atomos/formInputs/formTextInput'
 const ModalInput = ({
@@ -53,43 +53,74 @@ const ModalInput = ({
     'Computrabajo',
     'Municipalidades'
   ]
+
+  const paisnac = [
+    'Facebook',
+    'Whatsapp',
+    'Afiche/Volante',
+    'Aptitus',
+    'Radio',
+    'Tv/Television',
+    'Municipalidades',
+    'Computrabajo',
+    'Municipalidades'
+  ]
+
+  const aspsalarios = ['1001 a 1500', '1501 a 2000', '2001 a 2500', '2501 a 3000', '3001 a 3500', '3501 a 4000', '4001 a 4500', '4501 a 5000', '5001 a 5500', '5501 a 6000', '6001 a 6500', '6501 a 7000', '7001 a 7500', '7501 a 8000', '8001 a 8500', '8501 a 9000', '9001 a 9500', '9501 a 10000', '10000 a mas']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const onSubmit = (data) => {
     const datospostulates = {
-      cargo:titleModal,
+      cargo: titleModal,
       documento: data.tipodocumento,
       nrdocumento: data.nrdocumento,
       correo: data.correo,
       medio: data.medioenteraste,
       departamento: data.departementosel,
       provincia: data.provincia,
-      distrito: data.distrito
+      distrito: data.distrito,
+      apaterno: data.apaterno,
+      amaterno: data.amaterno,
+      fechanac: data.fechanac,
+      paisnac: data.paisnac,
+      telefono: data.telefono,
+      aspsalarios: data.aspsalarios
 
-      
-      
     }
     console.log(datospostulates)
     crear(datospostulates);
 
 
-  
+
   };
 
-  async function crear(datospostulates){
+  async function crear(datospostulates) {
 
-    try{
+    try {
 
-      var response1 = await fetch("http://localhost:8000/api/postulacion",{method:"POST",headers: {'Content-Type': 'application/json'}, body: JSON.stringify(datospostulates)});
+      var response1 = await fetch("http://localhost:8000/api/postulacion", { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(datospostulates) });
       var jsonresponse1 = await response1.json()
       console.log(jsonresponse1)
     }
-    catch (err)
-    {
+    catch (err) {
 
       console.log(err)
     }
 
-   
-   
+
+
 
   }
   return (
@@ -136,50 +167,50 @@ const ModalInput = ({
 
             <FormTextInput
               inputName="nrdocumento"
-              title="N° Documento"
+              title="Documento"
               icon={<FaFile />}
-              placeholder="Ingrese N° Documento"
+              placeholder="Ingresar Documento"
               options={{
-                validate: {
-                  empty: (v) =>
-                    v !== "" || "Colocar Número de Documento",
-                  dni: (v) =>
-                    (watch("documentType") === "dni"
-                      ? v.length === 8
-                      : true) || "DNI debe tener 8 Digitos",
-                  ruc: (v) =>
-                    (watch("documentType") === "ruc"
-                      ? v.length === 11
-                      : true) || "RUC debe tener 11 Digitos",
-                  carnet: (v) =>
-                    (watch("documentType") === "carnet"
-                      ? v.length === 9
-                      : true) || "Carnet debe tener 9 Digitos",
+                required: {
+                  value: true,
+                  message: 'Documneto requerido',
                 },
                 pattern: {
                   value: /^[0-9]+$/,
-                  message: "Número de Documento invalido",
+                  message: 'Documento invalido',
                 },
+                minLength: {
+                  value: 8,
+                  message: 'No menos de 8 digitos.',
+                }
+
               }}
               type="number"
               register={register}
               errors={errors}
             />
+
+
+
             <FormTextInput
               inputName="correo"
-              title="Correo"
+              title="Correo Electrónico"
               icon={<FaRegMessage />}
-              placeholder="Ingresar Correo"
+              placeholder="Ingresar Correo Electrónico"
               options={{
                 required: {
                   value: true,
-                  message: "Dirección Correo Requerido",
+                  message: 'Correo Electrónico requerido',
+                },
+                pattern: {
+                  value: /^[a-zA-Z0-9@._]+$/,
+                  message: 'Correo Electrónico invalido',
                 },
               }}
+              type="email"
               register={register}
               errors={errors}
             />
-
 
 
             <FormSelectInput
@@ -248,6 +279,11 @@ const ModalInput = ({
                   value: true,
                   message: "Provincia Requerida",
                 },
+                pattern: {
+                  value: /^[a-zA-Z ]+$/,
+                  message: 'Provincia invalido',
+                }
+
               }}
               register={register}
               errors={errors}
@@ -262,10 +298,155 @@ const ModalInput = ({
                   value: true,
                   message: "Distrito Requerido",
                 },
+                pattern: {
+                  value: /^[a-zA-Z ]+$/,
+                  message: 'Distrito invalido',
+                }
+
               }}
               register={register}
               errors={errors}
             />
+
+            <FormTextInput
+              inputName="apaterno"
+              title="Apellido Paterno"
+              icon={<FaRegMessage />}
+              placeholder="Ingresar Apellido Paterno"
+              options={{
+                required: {
+                  value: true,
+                  message: "Apellido Paterno Requerido",
+                },
+              }}
+              register={register}
+              errors={errors}
+            />
+
+            <FormTextInput
+              inputName="amaterno"
+              title="Apellido Materno"
+              icon={<FaRegMessage />}
+              placeholder="Ingresar Apellido Materno"
+              options={{
+                required: {
+                  value: true,
+                  message: "Apellido Materno Requerido",
+                },
+              }}
+              register={register}
+              errors={errors}
+            />
+            <FormTextInput
+              inputName="nombres"
+              title="Nombres"
+              icon={<FaRegMessage />}
+              placeholder="Nombres"
+              options={{
+                required: {
+                  value: true,
+                  message: "Nombres Requeridos",
+                },
+              }}
+              register={register}
+              errors={errors}
+            />
+
+            <FormTextInput
+              inputName="fechanac"
+              title="Fecha de Nacimiento"
+              type="date"
+              icon={<FaRegMessage />}
+              placeholder="Fecha"
+              options={{
+                required: {
+                  value: true,
+                  message: "Fecha de Nacimiento Requerida",
+                },
+              }}
+              register={register}
+              errors={errors}
+            />
+
+            <FormTextInput
+              inputName="paisnac"
+              title="Pais de Nacimiento"
+              icon={<FaCity />}
+              placeholder="Ingresar Pais de Nacimiento"
+              options={{
+                required: {
+                  value: true,
+                  message: 'Pais de Nacimiento requerido',
+                },
+                pattern: {
+                  value: /^[a-zA-Z ]+$/,
+                  message: 'Pais de Nacimiento invalido',
+                },
+                minLength: {
+                  value: 4,
+                  message: 'No menos de 4 caracteres.',
+                },
+              }}
+              register={register}
+              errors={errors}
+            />
+            <FormTextInput
+              inputName="telefono"
+              title="Teléfono"
+              icon={<FaPhone />}
+              placeholder="Ingresar Teléfono"
+              options={{
+                required: {
+                  value: true,
+                  message: 'Teléfono requerido',
+                },
+                pattern: {
+                  value: /^[0-9]+$/,
+                  message: 'Teléfono invalido',
+                },
+                minLength: {
+                  value: 9,
+                  message: 'Coloque 9 digitos.',
+                },
+                maxLength: {
+                  value: 9,
+                  message: 'No colocar más de 9 digitos.',
+                },
+              }}
+              register={register}
+              errors={errors}
+            />
+
+            <FormSelectInput
+              inputName="aspsalarios"
+              title="Aspiracion Salarial"
+              icon={<FaCity />}
+              placeholder="Aspiracion Salarial S/."
+              options={{
+                validate: {
+                  value: (e) => e !== "select" || "Aspiracion Salarial requerido",
+                },
+              }}
+              register={register}
+              errors={errors}
+              watch={watch}
+            >
+
+              {Array.isArray(aspsalarios) &&
+                aspsalarios.map((item, index) =>
+                  <option
+                    key={index}
+                    value={item}
+                    className="capitalize text-gray-700"
+                  >
+                    {item}
+                  </option>
+                )}
+            </FormSelectInput>
+
+
+
+
             <Botonbl type="submit" nombre='Continuar' onClick={() => handleSubmit()}></Botonbl>
 
           </form>

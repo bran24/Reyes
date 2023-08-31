@@ -50,9 +50,8 @@ const FormTextInput = ({
           })}
           id={inputName}
           disabled={disabled}
-          className={`py-1 px-2 rounded-r-xl w-full sm:w-full focus:outline-none bg-white ${
-            disabled ? 'cursor-not-allowed' : ''
-          } ${uppercase ? (watch !== '' ? 'uppercase' : '') : ''}`}
+          className={`py-1 px-2 rounded-r-xl w-full sm:w-full focus:outline-none bg-white ${disabled ? 'cursor-not-allowed' : ''
+            } ${uppercase ? (watch !== '' ? 'uppercase' : '') : ''}`}
           {...register(inputName, options)}
         />
       </div>
