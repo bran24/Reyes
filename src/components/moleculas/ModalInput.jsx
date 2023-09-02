@@ -1,19 +1,25 @@
 /* eslint linebreak-style: ["error", "windows"] */
 /* eslint-disable */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import Botonbl from '../atomos/Botonbl'
 import { FaRegMessage, FaXmark, FaFile, FaHouseCrack, FaCity, FaPhone } from "react-icons/fa6"
 import FormSelectInput from '../atomos/formInputs/formSelectInput'
 import FormTextInput from '../atomos/formInputs/formTextInput'
+import axios from 'axios';
 const ModalInput = ({
   titleModal, closeFunction, onClickFunction, titleClickFunction, defaultNumber,
 }) => {
+const [archivos, setArchivos] = useState(null);
+
+
+
   // FORM VARIABLES
   const {
     register, watch, reset, setValue, clearErrors, handleSubmit, setFocus, formState: { errors },
   } = useForm();
+
 
   const departamentos = ['AMAZONAS',
     'ANCASH',
@@ -70,18 +76,33 @@ const ModalInput = ({
 
 
 
-
-
-
-
-
-
-
-
-
-
+const subirArchivos = (e)=>
+{
+setArchivos(e);
+}
 
   const onSubmit = (data) => {
+
+    if(archivos !=null){
+
+      const ext =  archivos.name.split('.').pop(); 
+      const filename = Date.now();
+      cv_name = `${filename}.${ext}`;
+  
+      const formDatacv = new FormData();
+  
+      formDatacv.append("file", archivos,`${filename}.${ext}`);
+      
+      axios
+      .post('http://localhost:8000/api/archivocv', formDatacv)
+      .then((res) => {
+        console.log(res);
+      })
+
+
+    }
+
+
     const datospostulates = {
       cargo: titleModal,
       documento: data.tipodocumento,
@@ -91,16 +112,19 @@ const ModalInput = ({
       departamento: data.departementosel,
       provincia: data.provincia,
       distrito: data.distrito,
+      nombres: data.nombres,
       apaterno: data.apaterno,
       amaterno: data.amaterno,
       fechanac: data.fechanac,
       paisnac: data.paisnac,
       telefono: data.telefono,
-      aspsalarios: data.aspsalarios
+      aspsalarios: data.aspsalarios,
+      archivocv: cv_name != null ? cv_name : null,
 
     }
-    console.log(datospostulates)
-    crear(datospostulates);
+
+ 
+    // crear(formData);
 
 
 
@@ -137,11 +161,11 @@ const ModalInput = ({
               {titleModal}
             </h1>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center items-center mt-3">
+          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center items-center ">
 
             <FormSelectInput
               inputName="tipodocumento"
-              title="Documento"
+              title="Tipo de Documento"
               placeholder='Documento'
               icon={<FaFile />}
               options={{
@@ -444,7 +468,11 @@ const ModalInput = ({
                 )}
             </FormSelectInput>
 
-
+<div className=' flex flex-col w-full mt-2 mb-2 '>
+<label form="archivos" className='font-semibold pl-2.5 text-gray-800'>Cargar Cv</label>
+<input type='file' name='archivos' accept=".pdf"  required  onChange={(e)=>{subirArchivos(e.target.files)}}></input>
+</div>
+        
 
 
             <Botonbl type="submit" nombre='Continuar' onClick={() => handleSubmit()}></Botonbl>
