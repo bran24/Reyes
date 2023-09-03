@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import Botonbl from '../atomos/Botonbl'
-import { FaRegMessage, FaXmark, FaFile, FaHouseCrack, FaCity, FaPhone } from "react-icons/fa6"
+import { FaRegMessage, FaXmark, FaFile, FaHouseCrack, FaCity, FaPhone, FaArrowLeftLong } from "react-icons/fa6"
 import FormSelectInput from '../atomos/formInputs/formSelectInput'
 import FormTextInput from '../atomos/formInputs/formTextInput'
 import axios from 'axios';
@@ -20,6 +20,9 @@ const ModalInput = ({
   const {
     register, watch, reset, setValue, clearErrors, handleSubmit, setFocus, formState: { errors },
   } = useForm();
+
+
+
 
 
   const departamentos = ['AMAZONAS',
@@ -77,6 +80,12 @@ const ModalInput = ({
 
 
 
+  const atrasFunction = () => {
+
+    setVisibleintem1(true)
+    setVisibleintem2(false)
+
+  }
   const subirArchivos = (e) => {
 
     if (e[0].name != undefined) {
@@ -210,6 +219,9 @@ const ModalInput = ({
           <button type="button" onClick={() => closeFunction()} className="absolute right-3 top-2">
             <FaXmark />
           </button>
+          <button type="button" onClick={() => atrasFunction()} className="absolute left-4 top-2">
+            <FaArrowLeftLong />
+          </button>
           <div className="flex flex-col justify-center items-center text-center">
             <h1 className="text-xl font-semibold flex flex-col justify-center items-center">
               {titleModal}
@@ -232,7 +244,7 @@ const ModalInput = ({
                 watch={watch}
                 errors={errors}
               >
-                <option value="dni" className="text-gray-700">
+                <option value="DNI" className="text-gray-700">
                   DNI
                 </option>
                 <option value="CARNET DE EXTRANJERIA" className="text-gray-700">
@@ -461,7 +473,7 @@ const ModalInput = ({
                   },
                   pattern: {
                     value: /^[a-zA-Z ]+$/,
-                    message: 'Pais de Nacimiento invalido',
+                    message: 'Pais de Nacimiento invalido,recuerde no ingresar tildes',
                   },
                   minLength: {
                     value: 4,

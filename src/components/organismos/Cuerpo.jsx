@@ -58,9 +58,10 @@ const Cuerpo = () => {
 
 
           <p className="text-sm">
-            Responsable de la planificación,&nbsp;organización,  <br />gestión de las actividades que se desarrollan en tienda  <br />(internas y externas).                                                <br />
-            <br />Fecha Publicación: 15/09/2020                                                <br />Fecha Vencimiento: Sin fecha de vencimiento                                                <br /><br />Requisitos:
-            <br />Edad: Mayores de 18 años
+            Responsable de la planificación,&nbsp;organización,  <br />gestión de las actividades que se desarrollan en tienda ,<br />(internas y externas).
+            <br />
+            <br />Fecha Publicación: 04/10/2023                                                <br />Fecha Vencimiento: Sin fecha de vencimiento                                                <br /><br />Requisitos:
+            <br />Edad: Mayores de 25 años a 40 años
             <br />¿Personas con discapacidad?: Sí
 
 
@@ -75,10 +76,9 @@ const Cuerpo = () => {
         <div>
           <h4 className="font-medium">{ofertas[1].cargo}</h4>
           <span className="text-sm">
-
-            Encargado de ofrecer los productos de tienda informando al cliente sobre la variedad, la calidad y las características más resaltante de los productos.                                                <br />
-            <br />Fecha Publicación: 15/09/2020                                                <br />Fecha Vencimiento: Sin fecha de vencimiento                                                <br /><br />Requisitos:
-            <br />Edad: Mayores de 18 años
+            Encargado de  encontrar y vender a los clientes fuera del establecimiento, ofreciendo los productos,informando al cliente sobre la variedad, la calidad y las características más resaltante de los productos.                                                <br />
+            <br />Fecha Publicación: 04/10/2023                                                <br />Fecha Vencimiento: Sin fecha de vencimiento                                                <br /><br />Requisitos:
+            <br />Edad: Mayores de 25 años a 40 años
             <br />¿Personas con discapacidad?: Sí
           </span>
           <div className='flex justify-center mt-5'>
