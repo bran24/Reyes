@@ -3,8 +3,7 @@ import Header from '../../organismos/Header'
 import Footer from '../../organismos/Footer'
 import { useEffect, useState } from 'react';
 import Botonbl from '../../atomos/Botonbl';
-
-
+import dayjs from "dayjs";
 const DatosPostulantes = () => {
 
   const [DatosPostulantes, setDatosPostulantes] = useState(null);
@@ -41,21 +40,24 @@ const DatosPostulantes = () => {
   }
 
 
-  const descargarcv = () => {
+  const descargarcv = (cv) => {
+
+    window.open(`http://localhost:8000/storage/curriculos/${cv}`)
 
 
   }
+
 
   return (
 
     <div className='flex flex-col min-h-screen' >
       <Header></Header>
 
-
-      <div className="p-4 overflow-auto h-96 monturas">
+      <h1 className='font-medium m-auto text-2xl'>Datos de Postulantes</h1>
+      <div className="p-4 overflow-auto h-full w-full">
         <table
           id="tableAdmin"
-          className="table-auto text-center text-gray-700 w-full"
+          className="table-auto text-center text-gray-700 "
         >
           <thead>
             <tr
@@ -74,6 +76,11 @@ const DatosPostulantes = () => {
               <th className="border-r border-b border-gray-200 px-2 py-2 font-medium">
                 <div className="text-sm">
                   <p className="whitespace-nowrap">Fecha de Postualcion</p>
+                </div>
+              </th>
+              <th className="border-r border-b border-gray-200 px-2 py-2 font-medium">
+                <div className="text-sm">
+                  <p className="whitespace-nowrap">Hora de Postualcion</p>
                 </div>
               </th>
               <th className="border-r border-b border-gray-200 px-6 py-2 font-medium whitespace-nowrap">
@@ -119,7 +126,10 @@ const DatosPostulantes = () => {
                     {item.cargo || ''}
                   </td>
                   <td className="border border-gray-350 px-2 py-2 font-medium capitalize text-left">
-                    {item.created_at || ''}
+                    {dayjs(item.created_at).format("DD-MM-YYYY")}
+                  </td>
+                  <td className="border border-gray-350 px-2 py-2 font-medium capitalize text-left">
+                    {dayjs(item.created_at).format("HH:mm")}
                   </td>
 
                   <td className="border border-gray-350 px-2 py-2 font-medium capitalize text-left">
@@ -147,7 +157,9 @@ const DatosPostulantes = () => {
                   </td>
                   <td className="border border-gray-350 px-2 py-2 font-medium">
                     <div className="flex justify-center space-x-2">
-                      <Botonbl type="button" nombre='Descargar' onClick={() => descargarcv()}></Botonbl>
+
+
+                      <Botonbl type="button" nombre='Descargar' onClick={() => descargarcv(item.archivocv)}></Botonbl>
                     </div>
                   </td>
                 </tr>

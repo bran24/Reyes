@@ -1,11 +1,11 @@
-const Footer = ()=>{
+const Footer = () => {
 
-return(
-<div className="bg-slate-500 w-full h-48 mt-auto">
+    return (
+        <div className="bg-slate-500 w-full h-48 mt-auto">
 
-<div className="flex justify-center">
+            <div className="flex justify-center">
 
-<div className="grid grid-cols-2 ">
+                <div className="grid grid-cols-2 ">
                     <div>
                         <ul className="mt-3">
                             <li className="text-white"><a href="">Acerca de Reyes</a></li>
@@ -26,20 +26,20 @@ return(
                         </ul>
                     </div>
                 </div>
-               
-
-</div>
-<div className="flex justify-center">
-
-<span className="text-white font-bold mt-2">Reyes © Todos los derechos reservados 2022</span>
-</div>
 
 
+            </div>
+            <div className="flex justify-center">
+
+                <span className="text-white font-bold mt-2">Reyes © Todos los derechos reservados 2022</span>
+            </div>
 
 
 
 
-</div>);
+
+
+        </div>);
 
 
 }

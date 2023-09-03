@@ -1,6 +1,6 @@
-import logoceintec from './img/logoceintec.jpg';
+import logo_reyes from './img/logo_reyes.jpg';
 
 export default {
-"logoceintec":logoceintec
+"logo_reyes":logo_reyes
 
 }

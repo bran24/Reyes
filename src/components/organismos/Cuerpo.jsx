@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Botonbl from '../atomos/Botonbl'
 import ModalInput from '../moleculas/ModalInput';
 import Portal from '../../utils/Portal.jsX'
@@ -50,48 +50,45 @@ const Cuerpo = () => {
       <br />
       <br />
 
-      <div className="grid grid-rows-3  gap-y-10">
-
-        {/* fila 1 */}
-        <div className="grid grid-cols-3 gap-15">
-
-          <div>
-            <h4 className="font-medium">{ofertas[0].cargo}</h4>
+      <div className="grid  grid-rows-2 sm:grid-cols-2  gap-10">
 
 
-            <p className="text-sm">
-              Responsable de la planificación,&nbsp;organización,  <br />gestión de las actividades que se desarrollan en tienda  <br />(internas y externas).                                                <br />
-              <br />Fecha Publicación: 15/09/2020                                                <br />Fecha Vencimiento: Sin fecha de vencimiento                                                <br /><br />Requisitos:
-              <br />Edad: Mayores de 18 años
-              <br />¿Personas con discapacidad?: Sí
+        <div>
+          <h4 className="font-medium">{ofertas[0].cargo}</h4>
 
 
-            </p>
-            <div className='flex justify-center mt-5'>
-              <Botonbl nombre='Postula' onClick={() => { clickpostular(ofertas[0].cargo) }} ></Botonbl>
-            </div>
+          <p className="text-sm">
+            Responsable de la planificación,&nbsp;organización,  <br />gestión de las actividades que se desarrollan en tienda  <br />(internas y externas).                                                <br />
+            <br />Fecha Publicación: 15/09/2020                                                <br />Fecha Vencimiento: Sin fecha de vencimiento                                                <br /><br />Requisitos:
+            <br />Edad: Mayores de 18 años
+            <br />¿Personas con discapacidad?: Sí
 
+
+          </p>
+          <div className='flex justify-center mt-5'>
+            <Botonbl nombre='Postula' onClick={() => { clickpostular(ofertas[0].cargo) }} ></Botonbl>
           </div>
-
-
-          <div>
-            <h4 className="font-medium">{ofertas[1].cargo}</h4>
-            <span className="text-sm">
-
-              Encargado de ofrecer los productos de tienda informando al cliente sobre la variedad, la calidad y las características más resaltante de los productos.                                                <br />
-              <br />Fecha Publicación: 15/09/2020                                                <br />Fecha Vencimiento: Sin fecha de vencimiento                                                <br /><br />Requisitos:
-              <br />Edad: Mayores de 18 años
-              <br />¿Personas con discapacidad?: Sí
-            </span>
-            <div className='flex justify-center mt-5'>
-              <Botonbl nombre='Postula' onClick={() => { clickpostular(ofertas[1].cargo) }} ></Botonbl>
-            </div>
-          </div>
-
-
-
 
         </div>
+
+
+        <div>
+          <h4 className="font-medium">{ofertas[1].cargo}</h4>
+          <span className="text-sm">
+
+            Encargado de ofrecer los productos de tienda informando al cliente sobre la variedad, la calidad y las características más resaltante de los productos.                                                <br />
+            <br />Fecha Publicación: 15/09/2020                                                <br />Fecha Vencimiento: Sin fecha de vencimiento                                                <br /><br />Requisitos:
+            <br />Edad: Mayores de 18 años
+            <br />¿Personas con discapacidad?: Sí
+          </span>
+          <div className='flex justify-center mt-5'>
+            <Botonbl nombre='Postula' onClick={() => { clickpostular(ofertas[1].cargo) }} ></Botonbl>
+          </div>
+        </div>
+
+
+
+
 
 
       </div>
